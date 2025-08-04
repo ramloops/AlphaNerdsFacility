@@ -5,7 +5,34 @@ function showPage(pageId) {
   
   // Show selected page
   document.getElementById(pageId).style.display = 'block';
+  
+  // Set default filters when showing schedule page
+  if (pageId === 'schedule') {
+    setDefaultFilters();
+  }
 }
+
+function setDefaultFilters() {
+  // Set location filter to Natick
+  const locationFilter = document.getElementById('locationFilter');
+  if (locationFilter) {
+    locationFilter.value = 'Natick';
+  }
+  
+  // Set class filter to All (empty value)
+  const classFilter = document.getElementById('classFilter');
+  if (classFilter) {
+    classFilter.value = '';
+  }
+  
+  // Apply the filters
+  filterSchedule();
+}
+
+// Set default filters when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  setDefaultFilters();
+});
 
 function filterSchedule() {
   const location = document.getElementById('locationFilter').value.toLowerCase();
