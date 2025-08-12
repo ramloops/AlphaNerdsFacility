@@ -244,6 +244,26 @@ footer{
   text-decoration: underline;
 }
 
+footer a {
+  color: inherit;           /* Matches footer text color */
+  text-decoration: none;    /* Removes underline */
+}
+
+footer a:hover {
+  opacity: 0.8;              /* Subtle hover effect */
+}
+
+footer .social-links a {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+footer .social-links img {
+  width: 24px;
+  height: 24px;
+  filter: invert(100%);  /* Makes icons white for dark background */
+}
+
 /* Motion safety */
 @media (prefers-reduced-motion: reduce){
   *{ transition:none !important; }
