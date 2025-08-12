@@ -6,12 +6,17 @@
   --surface-3:#292d3e;
   --text:#cfd3d6;
   --muted:#9aa3ac;
-  --heading:#f0c674;
+  --heading:#a8d0c6;
   --accent:#8abeb7;
   --accent-2:#a0d0c9;
   --link:#89c2ff;
   --ring:#5f819d;
   --shadow:0 8px 24px rgba(0,0,0,.35);
+
+ /* Alternative heading colors */
+  /* --heading: #f0c674; */ /* warm gold (currently unused, retro vibe) */
+  /* --heading: #e4c988; */ /* muted modern gold */
+  /* --heading: #a8d0c6; */ /* off muffed white */
 }
 
 *{ box-sizing:border-box; }
