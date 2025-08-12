@@ -34,15 +34,33 @@ document.addEventListener('DOMContentLoaded', function() {
   setDefaultFilters();
 });
 
+// Ensure Schedule shows with defaults when clicking the nav link
+const scheduleLink = document.querySelector('a[href="#schedule"]');
+if (scheduleLink) {
+  scheduleLink.addEventListener('click', () => {
+    // showPage already runs; just re-apply defaults after the page is visible
+    setTimeout(setDefaultFilters, 0);
+  });
+}
+
+// normalize text: lowercase, collapse spaces, convert all dash variants to '-'
+const norm = s => (s || '')
+  .toLowerCase()
+  .normalize('NFKD')
+  .replace(/[\u2010\u2011\u2012\u2013\u2014\u2015\u2212\u2043\uFE58\uFE63\uFF0D]/g, '-') // all hyphen/dash types
+  .replace(/\s+/g, ' ')
+  .trim();
+
 function filterSchedule() {
-  const location = document.getElementById('locationFilter').value.toLowerCase();
-  const classType = document.getElementById('classFilter').value.toLowerCase();
+  const location = norm(document.getElementById('locationFilter').value);
+  const classType = norm(document.getElementById('classFilter').value);
   const rows = document.querySelectorAll("tbody tr");
-  
+
   rows.forEach(row => {
-    const loc = row.children[3].textContent.toLowerCase();
-    const cls = row.children[2].textContent.toLowerCase();
-    const show = (!location || loc.includes(location)) && (!classType || cls.includes(classType));
+    const loc = norm(row.children[3].textContent);
+    const cls = norm(row.children[2].textContent);
+    const show = (!location || loc.includes(location)) &&
+                 (!classType || cls.includes(classType));
     row.style.display = show ? '' : 'none';
   });
 }
